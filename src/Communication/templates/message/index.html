@@ -1,0 +1,32 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site de communication</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <h1>TABLEAU DE BORD </h1>
+
+            <h2>{{emp.firstName}} {{emp.name}} <p>Service : {{emp.service}}</p></h2>
+            <a class="mon-button" href="/messages/logout">Deconnection</a>
+
+        <table>
+            <tr><th>Numéro demande</th><th>Type demande</th><th>Identifiant employé</th><th>Date et heure de réception</th><th>Auteur (Service)</th>{% if emp.service.libelle == 'RH' %}<th>Fiche</th>{% endif %}</tr>
+
+                {% for Message in Messages %}
+                <tr><td><a href="{{Message.id}}">{{Message.id}}</a></td><td>{{Message.typeDemande}}</td><td>{{Message.employe.reference}}</td><td>{{ Message.dateReceiver|date:"d/m/Y" }} à {{ Message.dateReceiver|date:"h:m" }}</td><td>{{Message.sendBy}}</td>{% if emp.service.libelle == 'RH' %} <td>{{Message.file}}</td>{% endif %}</tr>
+                {% endfor %}
+
+        </table>
+        <div>{% if emp.service.libelle == 'RH' %}<a href="/messages/add">Générer une nouvelle demande</a>{% endif %}</div>
+    </div>
+        <br><br>
+        <div><a href="/messages/add">Envoyer une demande</a></div>
+        <br><br>
+        <div><a href="/messages/all">afficher toutes les messages</a></div>
+    </div>
+</body>
+</html>

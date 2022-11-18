@@ -1,0 +1,99 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Fiche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Récapitulatif des informations des personas  -->
+        <h1> Récalpitulatif du Persona {{valeur.name}} {{valeur.firstName}}</h1>
+
+        <p><b> Identifiant : {{valeur.reference}}</b></p>
+        <p> Nom : {{valeur.name}}</p>
+        <p> Prénom : {{valeur.firstName}}</p><br>
+        <p><b> Poste : {{valeur.job}}</b></p>
+        <p> Numéro d'offre : "None"</p>
+        <p> Service : {{valeur.service}}</p>
+        <p> Lieu du service : {{valeur.workplace}}</p><br>
+
+        <!-- Liste des déroulants des valeurs prévus pour créer des personas appliquées ici  -->
+        <p for="Identifiant_acces"><b> Identifiant Accès : </b></p>
+            <input list="ref1" type="text" id="Identifiant_acces" placeholder={{valeur.refAcces}}>
+        <datalist id="ref1">{{acces}}
+            <option value="DEV-C-001">
+            <option value="DEV-C-002">
+            <option value="DEV-C-003">
+            <option value="DEV-C-004">
+            <option value="DEV-C-005">
+            <option value="DEV-C-006">
+            <option value="DEV-C-007">
+            <option value="DEV-C-008">
+            <option value="SDEV-C-001">
+            <option value="SDEV-C-002">
+            <option value="SDEV-C-003">
+            <option value="SDEV-C-004">
+            <option value="SDEV-C-005">
+            <option value="SDEV-C-006">
+            <option value="SDEV-C-007">
+            <option value="SDEV-C-008">
+            <option value="SU-C-001">
+            <option value="SU-C-002">
+            <option value="SU-C-003">
+            <option value="SU-C-004">
+            <option value="SU-RB-002">
+            <option value="SU-RB-003">
+            <option value="SU-RB-004">
+            <option value="SU-RB-005">
+            <option value="SU-RW-001">
+            <option value="U-C-001">
+            <option value="U-C-002">
+            <option value="U-C-003">
+            <option value="U-RB-001">
+            <option value="U-RB-002">
+            <option value="U-RB-003">
+            <option value="U-RB-004">
+            <option value="U-RB-005">
+            <option value="U-RW-001">
+        </datalist><br />
+
+        <p><b>Identifiant Ordinateur : {{ordinateurs}}</b></p>
+            <input list="ref2" type="text" id="Identifiant_mat_ordi" placeholder={{valeur.refOrdi}}>
+        <datalist id="ref2">
+            <option value="DEV-U1-250-4">
+            <option value="DEV-U1-250-8">
+            <option value="DEV-U2-250-16">
+            <option value="DEV-U3-1T-8">
+            <option value="DEV-U3-1T-16">
+            <option value="None">
+        </datalist><br />
+
+        <p><b>Identifiant Téléphone : {{telephones}}</b></p>
+            <input list="ref3" type="text" id="Identifiant_mat_tel" placeholder={{valeur.refPhone}}>
+        <datalist id="ref3">
+            <option value="FRE-120">
+            <option value="ORA-5">
+            <option value="ORA-80">
+            <option value="ORA-200">
+            <option value="ORA-VOX">
+            <option value="SFR-1">
+            <option value="None">
+        </datalist><br />
+
+        <div class="container" type="text" style="background-color:#c91c73"><h1>Historique des conversations</h1></div><br>
+
+        <!-- Tableau récapitulatif des interactions du persona  -->
+        <p> Valeur : </p>
+        <p> Valeur 2 : </p>
+        <table>
+            <tr><th>Numéro demande</th><th>Type demande</th><th>Date et heure de réception</th><th>Auteur (Service)</th>{% if emp.service == 'RH' %}<th>Fiche</th>{% endif %}</tr>
+        <table></table>
+        </table><br>
+
+        <!-- Bouton de retour classique pour faire juste un retour sur la dernière page vue  -->
+         <input type="button" value = "Retour" onclick="history.back()">
+</div>
+</body>
+</html>

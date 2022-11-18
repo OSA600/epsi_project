@@ -1,0 +1,44 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Communication</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <h1> Détail demande matériel/droit Entité BQTSI </h1>
+        <form method="POST" action='records/'>
+            {% csrf_token %}
+            {{ champ }}
+            <center><h2>{{valeur.typeDemande}}</h2></center>
+        </form>
+
+        <div class="box">
+            <center>
+                <h4><p>Nom Employé :   {{ valeur.employe }}</p></h4>
+                <h4><p>Date et heure de la demande: {{valeur.dateReceiver}}</p></h4>
+                <h4><p>Service demandeur :  {{ valeur.sendBy }}</p></h4>
+                <h4><p>Service destinataire :   {{ valeur.receiver }}</p></h4>
+                <h4><p>Statut du materiel : En stock  {{ valeur.receiver }}</p></h4>
+                <h4>{% if valeur.typeDemande.id == 2 %}
+                    <p>Référence Droit :   {{ valeur.acces }}</p>
+                    {% endif %}</h4>
+                <h4>{% if valeur.typeDemande.id == 1 %}
+                    <p>Référence Ordinateur :  {{ valeur.ordinateur }}</p>
+                    {% endif %}</h4>
+                <h4>{% if valeur.typeDemande.id == 3 %}
+                    <p>Référence Téléphone :   {{ valeur.telephone }}</p>
+                    {% endif %}</h4>
+                <h4><p>Déscription :  {{ valeur.description }}</p></h4>
+                <h4><p>Validation : {% if valeur.valid == False %} En cours {% endif %}{% if valeur.valid == True %} Validée {% endif %}</h4> <BR>
+                </center>
+        </div>
+
+        <center>
+          <div class="flex"><a href="valid/{{valeur.id}}" class="mon-button">Valider</a><a href="refuse/{{valeur.id}}" class="mon-button">Refuser</a></div>
+        </center>
+    </div>
+</body>
+</html>

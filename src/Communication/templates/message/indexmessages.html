@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>afficher toutes les messages</title>
+    <style>
+    .mt-auto {
+    margin-top: auto !important;
+    }
+
+    .py-5 {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+    .bg-dark {
+      --bs-bg-opacity: 1;
+      background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    }
+    body {
+    background-image: url(https://img.freepik.com/premium-vector/abstract-futuristic-line-geometric-shape-blue-background-modern-creative-graphic-design_120819-829.jpg?w=1380);
+    background-size: cover;
+    }
+    .fw-bolder {
+    font-weight: bolder !important;
+    }
+    .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+    }
+    .section-heading {
+      text-align:center;
+      color:#102C4E;
+      margin-top: 50px;
+      margin-bottom:70px;
+      font-size: 30px;
+    }
+    .column-4 {
+      float: left;
+      width: 15%;
+      padding: 10px;
+      margin:16px;
+      height: 150px;
+    }
+    .project-text {
+      text-align:center;
+      font-size:25px;
+      color: white;
+    line-height: 140px;
+    }
+    .projects:hover {
+       background-color: #395B64;
+    }
+    .projects {
+      background-color:#2C3333;
+    }
+      .d-md-flex {
+    display: flex !important;
+  }
+      .flex-column {
+      flex-direction: column !important;
+    }
+    .min-vh-100 {
+      min-height: 100vh !important;
+    }
+
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+        <H2 class="section-heading project-text .fw-bolder display-4 "> Afficher toutes les messages</H2>
+        <ul>
+        {% for Message in Messages %}
+            <div class="column-4 projects" id="Messages" >
+                <li class="project-text" value="{{Message.id}}" hidden>{{Message.id}}</li>
+                <a class="project-text " href="{{Message.id}}">Message: {{Message.id}}</a>
+            </div>
+        {% endfor %}
+        </ul>
+
+
+</body>
+</html>

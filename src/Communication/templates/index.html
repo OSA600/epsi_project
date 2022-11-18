@@ -1,0 +1,16 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site de communication interservices</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+</head>
+<body>
+    <h1>Application de communication interservices</h1>
+    <p>Bonjour, authentifiez-vous</p>
+
+
+        {% include 'message/login.html' %}
+</body>
+</html>

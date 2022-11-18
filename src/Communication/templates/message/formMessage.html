@@ -1,0 +1,43 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site de communication</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+</head>
+<body>
+    <h1>Envoyer un message</h1>
+
+        <form method="post" action="">
+
+          <div class="container">
+            <label for="uname"><b>Destinataire</b></label>
+            <select name="receiver" id="cars">
+                <option value="mp">MP</option>
+                <option value="as">AS</option>
+                <option value="rt">RT</option>
+                <option value="rh">RH</option>
+              </select>
+
+              <label for="uname"><b>Motif</b></label>
+              <select name="receiver" id="cars">
+                  <option value="1">Proposition</option>
+                  <option value="2">Contre proposition</option>
+                  <option value="3">Matériel à commander</option>
+                  <option value="4">Incompatibilité</option>
+                </select>
+
+            <textarea id="story" name="story" rows="5">
+            contenu du message...
+            </textarea>
+
+          <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Envoyer</button>
+            <button type="button" class="cancelbtn">Anuuler</button>
+          </div>
+
+          <br><input type="button" value = "Retour" onclick="history.back()">
+        </form>
+</body>
+</html>

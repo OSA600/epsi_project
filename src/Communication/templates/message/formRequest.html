@@ -1,0 +1,215 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fiche form</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+    <SCRIPT LANGUAGE='Javascript'>
+      function bienvenue() {
+        elem = document.getElementById('typeDemande')
+        elemAcces = document.getElementById('refAcces')
+        elemOrdi = document.getElementById('refOrdi')
+        elemPhone = document.getElementById('refPhone')
+        if (elem.value==2){
+          elemAcces.disabled=true;
+          elemOrdi.disabled=false;
+          elemPhone.disabled=true;
+        }
+        if (elem.value==1){
+          elemAcces.disabled=false;
+          elemOrdi.disabled=true;
+          elemPhone.disabled=true;
+        }
+        if (elem.value==3){
+          elemAcces.disabled=true;
+          elemOrdi.disabled=true;
+          elemPhone.disabled=false;
+        }
+      }
+      </SCRIPT>
+    <style>
+      html, body {
+      min-height: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      }
+      h1 {
+      margin: 0 0 20px;
+      font-weight: 400;
+      color: #1c87c9;
+      }
+      p {
+      margin: 0 0 5px;
+      }
+      .main-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #1c87c9;
+      }
+      form {
+      padding: 25px;
+      margin: 25px;
+      box-shadow: 0 2px 5px #f5f5f5;
+      background: #f5f5f5;
+      }
+      .fas {
+      margin: 25px 10px 0;
+      font-size: 72px;
+      color: #fff;
+      }
+      .fa-envelope {
+      transform: rotate(-20deg);
+      }
+      .fa-at , .fa-mail-bulk{
+      transform: rotate(10deg);
+      }
+      input, textarea {
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #1c87c9;
+      outline: none;
+      }
+      input::placeholder {
+      color: #666;
+      }
+      button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      }
+      button:hover {
+      background: #2371a0;
+      }
+      @media (min-width: 568px) {
+      .main-block {
+      flex-direction: row;
+      }
+      .left-part, form {
+      width: 50%;
+      }
+      .fa-envelope {
+      margin-top: 0;
+      margin-left: 20%;
+      }
+      .fa-at {
+      margin-top: -10%;
+      margin-left: 65%;
+      }
+      .fa-mail-bulk {
+      margin-top: 2%;
+      margin-left: 28%;
+      }
+      .label-text {
+      display: inline-block;
+      align-items: center;
+      flex-direction:row;
+      justify-content: center;
+      align-items: center;
+      }
+      li {
+    height:2em;
+    padding:0px;
+    font-size:1em;
+    line-height:2em;
+    vertical-align:middle;
+      }
+      }
+    </style>
+</head>
+<body>
+    <div class="main-block">
+      <div class="left-part">
+        <i class="fas fa-envelope"></i>
+        <i class="fas fa-at"></i>
+        <i class="fas fa-mail-bulk"></i>
+      </div>
+      <form action="{% url 'saveRequest' %}" method="POST">
+        {% csrf_token %}
+        <h1>Fiche de demande</h1>
+
+        <label for="sendBy"><b>Envoyer par</b></label>
+          <input type="text" placeholder="Envoyer par" name="sendBy" id="sendBy" value="{{ sendBy }} " >
+
+        <div class="container">
+          <div>
+            <label for="typeDemande"><b>Type de demande</b></label>
+            <select name="typeDemande" id="typeDemande" onchange="bienvenue()">
+              <option value="" disabled selected></option>
+              {% for Type in typeDemandes %}
+                <option value="{{Type.id}}" >{{Type.type}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <br>
+          <br>
+
+          <div>
+          <label for="employee"><b>Employé</b></label>
+            <select name="employee" id="employee">
+              <option value="" disabled selected></option>
+              {% for employee in employees %}
+                <option value="{{employee.id}}">{{employee.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <br>
+          <br>
+
+          <div>
+          <label for="service"><b>Service</b></label>
+            <select name="service" id="service">
+                <option value="" disabled selected></option>
+              {% for service in services %}
+                <option value="{{service.id}}">{{service.libelle}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <br>
+          <br>
+
+        <div class="flex">
+          <label for="sendBy"><b>Matériel</b></label>
+          <select name="refOrdi" id="refOrdi" disabled>
+              <option value="" disabled selected></option>
+            {% for ordinateur in ordinateurs %}
+              <option value="{{ordinateur.id}}">{{ordinateur.reference}}</option>
+            {% endfor %}
+          </select>
+
+          <label for="sendBy"><b>Droit d'accès</b></label>
+          <select name="refAcces" id="refAcces" disabled>
+              <option value="" disabled selected></option>
+            {% for acce in acces %}
+              <option value="{{acce.id}}">{{acce.reference}}</option>
+            {% endfor %}
+          </select>
+          
+          <label for="sendBy"><b>Téléphonie</b></label>
+          <select name="refPhone" id="refPhone" disabled>
+              <option value="" disabled selected></option>
+            {% for telephone in telephones %}
+              <option value="{{telephone.id}}">{{telephone.reference}}</option>
+            {% endfor %}
+          </select>
+        </div>
+          <br>
+          <br>
+        <button type="submit">envoyer</button>
+        </form>
+  </body>
+</html>
